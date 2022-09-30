@@ -1,2 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using DataGenerator.Repository;
+
+
+Seed seed = new Seed();
+seed.Assets.Count();
+Console.WriteLine("");
