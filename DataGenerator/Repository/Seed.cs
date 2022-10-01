@@ -18,11 +18,11 @@ internal class Seed
         int assetId = 1;
 
         var assetGenerator = new Bogus.Faker<Asset>()
-                             .RuleFor(a => a.AssetId, _ => assetId++)
-                             .RuleFor(a => a.Password, _ => Guid.NewGuid().ToString())
-                             .RuleFor(a => a.Name, f => f.Lorem.Word())
-                             .RuleFor(d => d.Description, f => f.Lorem.Sentences(1))
-                             .RuleFor(a => a.Asset_Platform, f => f.PickRandom<Platform>());
+                                      .RuleFor(a => a.AssetId, _ => assetId++)
+                                      .RuleFor(a => a.Password, _ => Guid.NewGuid().ToString())
+                                      .RuleFor(a => a.Name, f => f.Lorem.Word())
+                                      .RuleFor(d => d.Description, f => f.Lorem.Sentences(1))
+                                      .RuleFor(a => a.Asset_Platform, f => f.PickRandom<Platform>());
 
         #endregion
 
