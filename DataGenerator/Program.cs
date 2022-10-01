@@ -3,5 +3,7 @@ using DataGenerator.Repository;
 
 
 Seed seed = new Seed();
+
 seed.Assets.Count();
+
 Console.WriteLine("");
