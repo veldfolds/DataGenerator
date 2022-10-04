@@ -22,7 +22,7 @@ internal class DataGeneratorDbContext : DbContext
 	}
 
 	/// <summary>
-	/// Setup the database configuration in our case an sqlite database.
+	/// Setup the database configuration in our case a sqlite database.
 	/// </summary>
 	/// <param name="builder"></param>
 	protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -31,7 +31,7 @@ internal class DataGeneratorDbContext : DbContext
 	}
 
 	/// <summary>
-	/// Configuring our tables and in this case seeding our tables.
+	/// Configuring our tables and in this case seeding them.
 	/// </summary>
 	/// <param name="modelBuilder"></param>
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
