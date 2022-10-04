@@ -14,6 +14,32 @@ internal class Seed
 
     public Seed()
 	{
+        
+        #region CLIENT_GENERATOR
+        int clientId = 1;
+
+        var clientGenerator = new Bogus.Faker<Client>()
+                                       .RuleFor(c => c.ClientId, _ => clientId++)
+                                       .RuleFor(c => c.Name, f => f.Name.FullName())
+                                       .RuleFor(c => c.Email, (f, c) => f.Internet.Email(c.Name))
+                                       .RuleFor(c => c.CompanyName, f => f.Company.CompanyName() + f.Company.CompanySuffix());
+        #endregion
+
+
+        #region PROJECT_GENERATOR
+        int projectId = 1;
+
+        var projectGenerator = new Bogus.Faker<Project>()
+                                        .RuleFor(p => p.ProjectId, _ => projectId++)
+                                        .RuleFor(p => p.Name, f => f.Lorem.Word())
+                                        .RuleFor(p => p.StartDate, f => f.Date.Past(1))
+                                        .RuleFor(p => p.EndDate, (f, p) => f.Date.Future(refDate: p.StartDate))
+                                        #region FOREIGN_KEYS
+                                        .RuleFor(p => p.ClientId, f => f.PickRandom<int>(Clients.Select(c => c.ClientId)));
+                                        #endregion
+
+        #endregion
+
         #region ASSET_GENERATOR
         int assetId = 1;
 
@@ -28,30 +54,7 @@ internal class Seed
                                       #endregion
 
         #endregion
-
-        #region PROJECT_GENERATOR
-        int projectId = 1;
-
-        var projectGenerator = new Bogus.Faker<Project>()
-                                        .RuleFor(p => p.ProjectId, _ => projectId++)
-                                        .RuleFor(p => p.Name, f => f.Lorem.Word())
-                                        .RuleFor(p => p.StartDate, f => f.Date.Past(1))
-                                        .RuleFor(p => p.EndDate, (f, p) => f.Date.Future(refDate: p.StartDate))
-                                        #region FOREIGN_KEYS
-                                        .RuleFor(p => p.ClientId, f => f.PickRandom<int>(Clients.Select(c => c.ClientId)));
-                                        #endregion  
-
-        #endregion
-
-        #region CLIENT_GENERATOR
-        int clientId = 1;
-
-        var clientGenerator = new Bogus.Faker<Client>()
-                                       .RuleFor(c => c.ClientId, _ => clientId++)
-                                       .RuleFor(c => c.Name, f => f.Name.FullName())
-                                       .RuleFor(c => c.Email, (f, c) => f.Internet.Email(c.Name))
-                                       .RuleFor(c => c.CompanyName, f => f.Company.CompanyName() + f.Company.CompanySuffix());
-                                       
+        
         //Generating clients
         Clients.AddRange(clientGenerator.Generate(5));
         //Generating projects
@@ -59,6 +62,6 @@ internal class Seed
         //Generating assets
         Assets.AddRange(assetGenerator.Generate(15));
 
-        #endregion  
+         
     }
 }

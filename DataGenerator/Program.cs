@@ -2,8 +2,6 @@
 using DataGenerator.Repository;
 
 
-Seed seed = new Seed();
+DataGeneratorDbContext context = new();
 
-seed.Assets.Count();
-
-Console.WriteLine("");
+Console.WriteLine("seeding completed");
