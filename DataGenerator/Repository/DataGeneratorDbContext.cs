@@ -14,6 +14,7 @@ internal class DataGeneratorDbContext : DbContext
 
 	public DataGeneratorDbContext()
 	{
+
 #if DEBUG
 		this.Database.EnsureDeleted();
 #endif

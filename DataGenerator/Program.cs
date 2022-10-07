@@ -1,7 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-using DataGenerator.Repository;
+﻿using DataGenerator.Repository;
 
 
+//Create a new db context
 DataGeneratorDbContext context = new();
 
-Console.WriteLine("seeding completed");
+
+Console.WriteLine("Seeding completed");
